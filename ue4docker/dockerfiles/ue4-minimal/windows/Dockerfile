@@ -26,6 +26,12 @@ COPY patch-build-graph.py C:\patch-build-graph.py
 RUN python C:\patch-build-graph.py C:\UnrealEngine\Engine\Build\InstalledEngineBuild.xml
 {% endif %}
 
+{% if ('-set:VS2022=true' not in buildgraph_args) and (not disable_all_patches) and (not disable_vs2022_source_patches) %}
+# Patch out problematic code in IoStore.cpp causing Internal Compiler Error (ICE) in VS2022
+COPY patch-vs2022-ice.py C:\patch-vs2022-ice.py
+RUN python C:\patch-vs2022-ice.py C:\UnrealEngine\Engine\Source\Runtime\Core\Private\IO\IoStore.cpp
+{% endif %}
+
 # Create an Installed Build of the Engine
 WORKDIR C:\UnrealEngine
 RUN .\Engine\Build\BatchFiles\RunUAT.bat BuildGraph `
