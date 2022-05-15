@@ -17,7 +17,7 @@ code = readFile(sourceFile)
 
 code = code.replace(
     "\t\tChunkInfo.PartitionIndex = -1;\n\t\tfor (int32 BlockIndex = FirstBlockIndex; BlockIndex <= LastBlockIndex; ++BlockIndex)",
-    "\t\tChunkInfo.PartitionIndex = -1;\n\t\tfor (size_t BlockIndex = FirstBlockIndex; BlockIndex <= LastBlockIndex; ++BlockIndex)"
+    "\t\tChunkInfo.PartitionIndex = -1;\n\t\tfor (size_t BlockIndex = FirstBlockIndex; BlockIndex <= LastBlockIndex; ++BlockIndex)",
 )
 
 writeFile(sourceFile, code)
