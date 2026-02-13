@@ -1,5 +1,6 @@
 # escape=`
-ARG UE4CLI_VERSION="ue4cli>=0.0.45"
+#ARG UE4CLI_VERSION="ue4cli>=0.0.45"
+ARG UE4CLI_VERSION="git+https://github.com/jonpas/ue4cli.git@remove/pkg_resources"
 ARG CONAN_UE4CLI_VERSION="conan-ue4cli>=0.0.27"
 ARG CONAN_VERSION="conan>=1.59.0,<2"
 {% if combine %}
