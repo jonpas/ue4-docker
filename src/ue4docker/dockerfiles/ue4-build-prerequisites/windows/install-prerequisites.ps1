@@ -85,7 +85,7 @@ $vs_args = @(
     "--add", "Microsoft.VisualStudio.Workload.VCTools",
     "--add", "Microsoft.VisualStudio.Workload.MSBuildTools",
     "--add", "Microsoft.VisualStudio.Component.NuGet",
-    "--add", "Microsoft.VisualStudio.Component.VC.14.38.17.8.x86.x64",
+    "--add", "Microsoft.VisualStudio.Component.VC.14.44.17.14.x86.x64",
     "--add", "Microsoft.VisualStudio.Component.Windows11SDK.22621",
     "--add", "Microsoft.Net.Component.4.5.TargetingPack",
     "--add", "Microsoft.Net.Component.4.6.2.TargetingPack",
