@@ -54,4 +54,4 @@ RUN choco install --no-progress -y cmake --installargs "ADD_CMAKE_TO_PATH=System
 
 # Copy a file that CMake uses to find the default Visual Studio Build Tools
 # This should be done in prerequisites image, however it is faster to apply here when we have ue4-minimal already built
-RUN cp C:/BuildTools/VC/Auxiliary/Build/Microsoft.VCToolsVersion.v143.default.txt C:/BuildTools/VC/Auxiliary/Build/Microsoft.VCToolsVersion.default.txt
+RUN copy C:\BuildTools\VC\Auxiliary\Build\Microsoft.VCToolsVersion.v143.default.txt C:\BuildTools\VC\Auxiliary\Build\Microsoft.VCToolsVersion.default.txt
