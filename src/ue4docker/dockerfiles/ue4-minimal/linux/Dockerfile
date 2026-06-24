@@ -23,8 +23,12 @@ RUN if [ -f ./Engine/Build/BatchFiles/BuildUBT.sh ]; then \
 	fi
 
 # Create an Installed Build of the Engine
+ARG BUILDGRAPH_ARGS=""
 WORKDIR /home/ue4/UnrealEngine
-RUN {% if automatic_build_id %}export BUILD_ID_OVERRIDE=UE_`cat ./Engine/Build/Build.version | jq --raw-output '"\(.MajorVersion).\(.MinorVersion)"'` && {% endif %}\
+COPY expand-runtime-args.py /tmp/expand-runtime-args.py
+RUN {% if build_secret_vars %}{% for var in build_secret_vars %}--mount=type=secret,id={{ var }},env={{ var }} {% endfor %}{% endif %}\
+	{% if automatic_build_id %}export BUILD_ID_OVERRIDE=UE_`cat ./Engine/Build/Build.version | jq --raw-output '"\(.MajorVersion).\(.MinorVersion)"'` && {% endif %}\
+	python3 /tmp/expand-runtime-args.py "$BUILDGRAPH_ARGS" \
 	./Engine/Build/BatchFiles/RunUAT.sh BuildGraph \
 	-target="Make Installed Build Linux" \
 	-script=Engine/Build/InstalledEngineBuild.xml \
